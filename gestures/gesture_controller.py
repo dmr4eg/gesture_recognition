@@ -58,3 +58,9 @@ class GestureController:
 
     def get_latest_processed_frame(self):
         return self.processed_frames.pop("frame", None)
+
+    # def get_fps(self):
+    #     return self.video_capture_manager.get_fps()
+
+    # def get_frame_count(self):
+    #     return self.video_capture_manager.get_frame_count()

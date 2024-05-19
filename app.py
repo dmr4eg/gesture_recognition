@@ -1,10 +1,10 @@
 import signal
 import sys
-from gestures.controller import GestureController
+from gestures.gesture_operating import GestureRecognitionHub
 
 class App:
     def __init__(self) -> None:
-        self.app = GestureController()
+        self.app = GestureRecognitionHub()
         signal.signal(signal.SIGINT, self.signal_handler)
 
     def signal_handler(self, _: signal.Signals, __: object) -> None:

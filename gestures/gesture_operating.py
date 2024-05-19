@@ -6,13 +6,12 @@ import cv2 as cv
 
 from gestures.gesture_controller import GestureController
 
-
 def event_arg(func):
     def wrapper(self, _: tk.Event = None):
         return func(self)
     return wrapper
 
-class GestureController(tk.Tk):  
+class GestureRecognitionHub(tk.Tk):  
     def __init__(self) -> None:
         super().__init__()
         self.paned_window = PanedWindow(self, orient=tk.HORIZONTAL,

@@ -8,7 +8,6 @@ from gestures.thread_pool_manager import ThreadPoolManager
 
 class GestureController: 
     def __init__(self, gesture_callback):
-
         self.gesture_callback_manager = GestureCallbackManager(
             gesture_callback)
         self.video_capture_manager = VideoCaptureManager()

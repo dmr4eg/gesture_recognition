@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import PanedWindow
 from markdown2 import markdown
+from gestures.components import HTMLLabel, PreviewFrame
 
 import cv2 as cv
 
@@ -15,7 +16,6 @@ class GestureRecognitionHub(tk.Tk):
     def __init__(self) -> None:
         super().__init__()
         self.paned_window = PanedWindow(self, orient=tk.HORIZONTAL,
-                                        bg=constants.monokai_colors["background"],
                                         sashwidth=5)
         self.paned_window.grid(row=0, column=0, sticky="nsew")
         self.grid_rowconfigure(0, weight=1)
@@ -40,10 +40,13 @@ class GestureRecognitionHub(tk.Tk):
             self.scroll_down()
 
     def scroll_up(self):
-        self.preview_area.yview_scroll(-1, 'units')  
+        """Scroll the editor up."""
+        self.preview_frame.scroll_up()
 
     def scroll_down(self):
-        self.preview_area.yview_scroll(1, 'units') 
+        """Scroll the editor down."""
+        self.preview_frame.scroll_down()
+        
 
     def update_cv_window(self):
         processed_frame = self.gesture_controller.get_latest_processed_frame()

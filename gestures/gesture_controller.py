@@ -4,12 +4,22 @@ from gestures.frame_processor import FrameProcessor
 from gestures.gesture_recognizer import GestureRecognizer
 from gestures.gesture_callback_manager import GestureCallbackManager
 from gestures.thread_pool_manager import ThreadPoolManager
+from spotipy import Spotify
+from spotipy.oauth2 import SpotifyOAuth
 
 
 class GestureController: 
     def __init__(self, gesture_callback):
+        self.spotify_client = Spotify(auth_manager=SpotifyOAuth(
+            client_id=os.getenv("SPOTIPY_CLIENT_ID"),
+            client_secret=os.getenv("SPOTIPY_CLIENT_SECRET"),
+            redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
+            scope="user-modify-playback-state,user-read-playback-state"
+        ))
         self.gesture_callback_manager = GestureCallbackManager(
-            gesture_callback)
+            gesture_callback, self.spotify_client, delay=2)
+
+
         self.video_capture_manager = VideoCaptureManager()
         self.gesture_recognizer = GestureRecognizer()
         self.frame_processor = FrameProcessor(self.gesture_recognizer.recognizer,

@@ -31,9 +31,9 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Expose the Flask port
 EXPOSE 5000
 
-# Define environment variables
-ENV SPOTIPY_CLIENT_ID=<6adf5dcb7d494b25919a562e5876d48c>
-ENV SPOTIPY_CLIENT_SECRET=<abca7dbdbae446e88b6d24e0b83284f5>
+# Define environment variables ==> Replace <!> with your Spotify API credentials
+ENV SPOTIPY_CLIENT_ID=<!>
+ENV SPOTIPY_CLIENT_SECRET=<!>
 ENV SPOTIPY_REDIRECT_URI=<http://localhost:8888/callback>
 
 # Run supervisord

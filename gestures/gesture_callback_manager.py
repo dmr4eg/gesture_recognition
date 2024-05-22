@@ -5,6 +5,13 @@ from spotipy import Spotify
 
 class GestureCallbackManager:
     def __init__(self, gesture_callback, spotify_client, delay=2):
+        """
+        Initialize the GestureCallbackManager with a callback function, Spotify client, and optional delay.
+        
+        :param gesture_callback: Function to be called based on gesture.
+        :param spotify_client: Instance of the Spotify client.
+        :param delay: Minimum delay between gesture actions in seconds.
+        """
         self.gesture_callback = gesture_callback
         self.spotify_client = spotify_client
         self.delay = delay
@@ -12,6 +19,11 @@ class GestureCallbackManager:
         self.last_action_time = time.time()
 
     def call_callback_based_on_gesture(self, gesture_name):
+        """
+        Call the appropriate callback based on the detected gesture, ensuring a delay between actions.
+        
+        :param gesture_name: Name of the detected gesture.
+        """
         current_time = time.time()
         if current_time - self.last_action_time < self.delay:
             print(f"Gesture {gesture_name} ignored due to delay")
@@ -60,7 +72,15 @@ class GestureCallbackManager:
                 print(f"No action performed for gesture: {gesture_name}")
 
     def add_delay(self):
+        """
+        Add a delay before the next gesture can be processed.
+        """
         time.sleep(self.delay)
 
 def gesture_callback(action):
-    print(f"Action: {action}") 
+    """
+    Example callback function to handle actions based on gestures.
+    
+    :param action: Action to be performed based on the gesture.
+    """
+    print(f"Action: {action}")

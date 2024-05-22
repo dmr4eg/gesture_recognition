@@ -238,3 +238,4 @@ cython_debug/
 *.iml
 *.vscode/
 *.venv/
+*.DS_Store

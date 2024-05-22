@@ -1,7 +1,5 @@
 import tkinter as tk
 from tkinter import PanedWindow
-from markdown2 import markdown
-from gestures.components import HTMLLabel, PreviewFrame
 
 import cv2 as cv
 
@@ -21,11 +19,7 @@ class GestureRecognitionHub(tk.Tk):
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
-        self.preview_frame = PreviewFrame(self.paned_window)
-
-        self.paned_window.add(self.preview_frame, stretch="always")
-        self.gesture_controller = GestureController(
-            self.handle_gesture)
+        self.gesture_controller = GestureController(self.handle_gesture)
 
         self.protocol("WM_DELETE_WINDOW", self.destroy)
 
@@ -34,19 +28,6 @@ class GestureRecognitionHub(tk.Tk):
 
     def handle_gesture(self, gesture_command):
         print("Callback received: ", gesture_command)
-        if gesture_command == "scroll_up":
-            self.scroll_up()
-        elif gesture_command == "scroll_down":
-            self.scroll_down()
-
-    def scroll_up(self):
-        """Scroll the editor up."""
-        self.preview_frame.scroll_up()
-
-    def scroll_down(self):
-        """Scroll the editor down."""
-        self.preview_frame.scroll_down()
-        
 
     def update_cv_window(self):
         processed_frame = self.gesture_controller.get_latest_processed_frame()

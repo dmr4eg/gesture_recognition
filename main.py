@@ -1,4 +1,4 @@
-from app import App
+from app2 import App
 
 if __name__ == "__main__":
     app_instance = App()

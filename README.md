@@ -65,7 +65,11 @@ or
 
 ```bash
 docker build -t gesture-recognition .
-docker run -p 8080:8080 gesture-recognition
+docker run -e SPOTIPY_CLIENT_ID='your-spotify-client-id' \
+           -e SPOTIPY_CLIENT_SECRET='your-spotify-client-secret' \
+           -e SPOTIPY_REDIRECT_URI='your-spotify-redirect-uri' \
+           -p 5000:5000 gesture-recognition-hub
+
 ```
 
 2. **Send a POST request**
